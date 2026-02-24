@@ -1,51 +1,41 @@
-// Array para armazenar senhas (será salvo no localStorage)
 let senhas = [];
 
-// Carrega senhas do localStorage ao iniciar
 window.onload = function() {
     carregarSenhas();
     exibirSenhas();
 }
 
-// Adicionar nova senha
 function adicionarSenha() {
     const site = document.getElementById('site').value;
     const usuario = document.getElementById('usuario').value;
     const senha = document.getElementById('senha').value;
 
-    // Validação
     if (!site || !usuario || !senha) {
         alert('Por favor, preencha todos os campos!');
         return;
     }
 
-    // Cria objeto com os dados
     const novaSenha = {
-        id: Date.now(), // ID único baseado em timestamp
+        id: Date.now(),
         site: site,
         usuario: usuario,
         senha: senha,
         data: new Date().toLocaleDateString()
     };
 
-    // Adiciona ao array
     senhas.push(novaSenha);
 
-    // Salva no localStorage
     salvarSenhas();
 
-    // Limpa o formulário
     document.getElementById('site').value = '';
     document.getElementById('usuario').value = '';
     document.getElementById('senha').value = '';
 
-    // Atualiza a lista
     exibirSenhas();
 
     alert('Senha salva com sucesso!');
 }
 
-// Gerar senha aleatória forte
 function gerarSenha() {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*';
     let senha = '';
@@ -57,7 +47,6 @@ function gerarSenha() {
     document.getElementById('senha').value = senha;
 }
 
-// Exibir todas as senhas
 function exibirSenhas(senhasFiltradas = null) {
     const listaSenhas = document.getElementById('listaSenhas');
     const senhasParaExibir = senhasFiltradas || senhas;
@@ -87,7 +76,6 @@ function exibirSenhas(senhasFiltradas = null) {
     });
 }
 
-// Mostrar/Ocultar senha
 function mostrarSenha(id, senha) {
     const elemento = document.getElementById(`senha-${id}`);
     
@@ -100,13 +88,11 @@ function mostrarSenha(id, senha) {
     }
 }
 
-// Copiar senha para área de transferência
 function copiarSenha(senha) {
     navigator.clipboard.writeText(senha);
     alert('Senha copiada para a área de transferência!');
 }
 
-// Deletar senha
 function deletarSenha(id) {
     if (confirm('Tem certeza que deseja deletar esta senha?')) {
         senhas = senhas.filter(item => item.id !== id);
@@ -116,7 +102,6 @@ function deletarSenha(id) {
     }
 }
 
-// Buscar senha
 function buscarSenha() {
     const busca = document.getElementById('busca').value.toLowerCase();
     
@@ -132,12 +117,10 @@ function buscarSenha() {
     exibirSenhas(senhasFiltradas);
 }
 
-// Salvar no localStorage
 function salvarSenhas() {
     localStorage.setItem('senhas', JSON.stringify(senhas));
 }
 
-// Carregar do localStorage
 function carregarSenhas() {
     const senhasSalvas = localStorage.getItem('senhas');
     if (senhasSalvas) {

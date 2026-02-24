@@ -9,8 +9,6 @@
 <body>
     <div class="container">
         <h1>🔐 Gerenciador de Senhas</h1>
-        
-        <!-- Formulário para adicionar senha -->
         <div class="form-container">
             <h2>Adicionar Nova Senha</h2>
             <input type="text" id="site" placeholder="Nome do site (ex: Gmail)">
@@ -20,12 +18,10 @@
             <button onclick="adicionarSenha()">Salvar</button>
         </div>
 
-        <!-- Busca -->
         <div class="search-container">
             <input type="text" id="busca" placeholder="🔍 Buscar por site..." onkeyup="buscarSenha()">
         </div>
 
-        <!-- Lista de senhas -->
         <div class="senhas-container">
             <h2>Minhas Senhas</h2>
             <div id="listaSenhas"></div>
